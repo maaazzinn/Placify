@@ -45,7 +45,7 @@ Placify
 ## Setup Instructions
 1. **Clone the Repository**: 
    ```
-   git clone <repository-url>
+   [git clone <repository-url>](https://github.com/maaazzinn/Placify.git)
    cd Placify
    ```
 
