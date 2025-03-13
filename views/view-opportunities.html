@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placify - View Opportunities</title>
+</head>
+<style>
+    /* Base styles and reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.back-btn {
+    background-color: #edf2f7;
+    color: #64748b;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.back-btn:hover {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+/* Filter section */
+.filter-section {
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.filter-section label {
+    font-weight: 500;
+    color: #334155;
+    white-space: nowrap;
+}
+
+.filter-section select {
+    padding: 8px 30px 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    background-color: #f8fafc;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M8 12l-6-6h12l-6 6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+.filter-section select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+/* Main content area */
+main {
+    margin-bottom: 40px;
+}
+
+/* Opportunities container */
+.opportunities-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Opportunity cards */
+.opportunity-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opportunity-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.opportunity-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+.opportunity-type {
+    display: inline-block;
+    background-color: #ebf4ff;
+    color: #3182ce;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.opportunity-card p {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    flex-grow: 1;
+}
+
+.opportunity-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.apply-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.apply-btn:hover {
+    background-color: #2980b9;
+}
+
+.mock-test-btn {
+    background-color: #edf2f7;
+    color: #4a5568;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.mock-test-btn:hover {
+    background-color: #e2e8f0;
+    color: #2d3748;
+}
+
+.delete-btn {
+    background-color: #fff5f5;
+    color: #e53e3e;
+    padding: 8px 16px;
+    border: 1px solid #fed7d7;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #fed7d7;
+}
+
+/* Status messages */
+.loading-text, .error-text, .no-data {
+    text-align: center;
+    padding: 30px;
+    grid-column: 1 / -1;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.loading-text {
+    color: #3182ce;
+}
+
+.error-text {
+    color: #e53e3e;
+}
+
+.no-data {
+    color: #718096;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.opportunity-card {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .opportunities-container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+<body>
+    <div class="container">
+        <header>
+            <h1>Opportunities</h1>
+            <a href="/dashboard" class="back-btn">Back to Dashboard</a>
+        </header>
+        
+        <div class="filter-section">
+            <label for="typeFilter">Filter by Type:</label>
+            <select id="typeFilter">
+                <option value="">All Opportunities</option>
+                <option value="Placement">Placements</option>
+                <option value="Internship">Internships</option>
+            </select>
+        </div>
+        
+        <main>
+            <div id="opportunitiesList" class="opportunities-container">
+                <p class="loading-text">Loading opportunities...</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const opportunitiesList = document.getElementById('opportunitiesList');
+            const typeFilter = document.getElementById('typeFilter');
+            let isAdmin = false;
+            let opportunities = [];
+            
+            // Fetch user info to check if admin
+            fetch('/user-info')
+                .then(response => response.json())
+                .then(data => {
+                    isAdmin = data.user.is_admin === 1;
+                    loadOpportunities();
+                })
+                .catch(error => {
+                    console.error('Error fetching user info:', error);
+                    loadOpportunities();
+                });
+            
+            // Load opportunities
+            function loadOpportunities(type = '') {
+                const url = type ? `/opportunities?type=${type}` : '/opportunities';
+                
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        opportunities = data.opportunities;
+                        renderOpportunities(opportunities);
+                    })
+                    .catch(error => {
+                        opportunitiesList.innerHTML = '<p class="error-text">Failed to load opportunities</p>';
+                        console.error('Error:', error);
+                    });
+            }
+            
+            // Render opportunities to the DOM
+            function renderOpportunities(opportunities) {
+                if (opportunities.length === 0) {
+                    opportunitiesList.innerHTML = '<p class="no-data">No opportunities found</p>';
+                    return;
+                }
+                
+                let html = '';
+                
+                opportunities.forEach(opportunity => {
+                    const deadlineDate = new Date(opportunity.deadline);
+                    const formattedDeadline = deadlineDate.toLocaleDateString();
+                    
+                    html += `
+                        <div class="opportunity-card">
+                            <h3>${opportunity.title}</h3>
+                            <span class="opportunity-type">${opportunity.type}</span>
+                            <p>${opportunity.description}</p>
+                            <p><strong>Deadline:</strong> ${formattedDeadline}</p>
+                            <div class="opportunity-actions">
+                                <a href="${opportunity.application_link}" target="_blank" class="apply-btn">Apply Now</a>
+                                ${opportunity.mock_test_link ? `<a href="${opportunity.mock_test_link}" target="_blank" class="mock-test-btn">Take Mock Test</a>` : ''}
+                                ${isAdmin ? `<button class="delete-btn" data-id="${opportunity.id}">Delete</button>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                opportunitiesList.innerHTML = html;
+                
+                // Add event listeners for delete buttons if admin
+                if (isAdmin) {
+                    document.querySelectorAll('.delete-btn').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            deleteOpportunity(id);
+                        });
+                    });
+                }
+            }
+            
+            // Delete opportunity (admin only)
+            function deleteOpportunity(id) {
+                if (confirm('Are you sure you want to delete this opportunity?')) {
+                    fetch(`/opportunities/${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const currentFilter = typeFilter.value;
+                            loadOpportunities(currentFilter);
+                        } else {
+                            alert(data.error || 'Failed to delete opportunity');
+                        }
+                    })
+                    .catch(error => {
+                        alert('An error occurred');
+                        console.error('Error:', error);
+                    });
+                }
+            }
+            
+            // Filter change event
+            typeFilter.addEventListener('change', function() {
+                const selectedType = this.value;
+                loadOpportunities(selectedType);
+            });
+        });
+    </script>
+</body>
+</html>

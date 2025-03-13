@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placify - College Placement Portal</title>
+</head>
+<style>
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f7f9fc;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.hero-section h1 {
+    color: #2c3e50;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-section .tagline {
+    color: #3498db;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.description {
+    max-width: 800px;
+    text-align: center;
+    color: #555;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.auth-container {
+    max-width: 500px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* Auth container and tabs */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 12px 0;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tabs button.active {
+    color: #3498db;
+    border-bottom: 3px solid #3498db;
+}
+
+.tabs button:hover:not(.active) {
+    color: #5faee3;
+}
+
+/* Form styles */
+.form-container {
+    padding: 10px 0;
+}
+
+.form-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #34495e;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Error message */
+.error-message {
+    color: #e74c3c;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section .tagline {
+        font-size: 1.2rem;
+    }
+    
+    .description {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+    
+    .auth-container {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .page-container {
+        padding: 20px 10px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-container {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+<body>
+    <div class="page-container">
+        <!-- Hero Section with Project Name and Description -->
+        <div class="hero-section">
+            <h1>Placify</h1>
+            <p class="tagline">Your Gateway to Career Opportunities</p>
+            <div class="description">
+                <p>Placify is a centralized platform that offers college students easy access to information about campus recruitment drives, internship opportunities, and other career resources. The auto-updating system simplifies the process of discovering and applying for opportunities, keeping students informed about relevant events, and deadlines.</p>
+                <br>
+                <p>The main goal of Placify is to empower students by not only providing career-related information but also offering insights into emerging technologies. The platform grants access to research papers on trending topics, promoting continuous learning and bridging the gap between academia and industry, ensuring students are well-prepared for their future careers.</p>
+            </div>
+        </div>
+        
+        <!-- Auth Container (Login/Signup) -->
+        <div class="auth-container">
+            <div class="tabs">
+                <button id="loginTab" class="active">Login</button>
+                <button id="signupTab">Signup</button>
+            </div>
+            
+            <div id="loginForm" class="form-container">
+                <h2>Login</h2>
+                <form id="login">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="text" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <p id="loginError" class="error-message"></p>
+            </div>
+            
+            <div id="signupForm" class="form-container" style="display: none;">
+                <h2>Student Signup</h2>
+                <form id="signup">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupRegNumber">Registration Number</label>
+                        <input type="text" id="signupRegNumber" name="regNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupAreaOfInterest">Area of Interest</label>
+                        <input type="text" id="signupAreaOfInterest" name="areaOfInterest" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required>
+                    </div>
+                    <button type="submit">Signup</button>
+                </form>
+                <p id="signupError" class="error-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const loginTab = document.getElementById('loginTab');
+            const signupTab = document.getElementById('signupTab');
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            
+            loginTab.addEventListener('click', function() {
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+            });
+            
+            signupTab.addEventListener('click', function() {
+                signupTab.classList.add('active');
+                loginTab.classList.remove('active');
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            });
+            
+            // Login form submission
+            document.getElementById('login').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '/dashboard';
+                    } else {
+                        document.getElementById('loginError').textContent = data.error || 'Login failed';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('loginError').textContent = 'An error occurred';
+                    console.error('Error:', error);
+                });
+            });
+            
+            // Signup form submission
+            document.getElementById('signup').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const regNumber = document.getElementById('signupRegNumber').value;
+                const areaOfInterest = document.getElementById('signupAreaOfInterest').value;
+                const password = document.getElementById('signupPassword').value;
+                
+                fetch('/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password, regNumber, areaOfInterest })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = '/dashboard';
+                    } else {
+                        document.getElementById('signupError').textContent = data.error || 'Signup failed';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('signupError').textContent = 'An error occurred';
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
