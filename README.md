@@ -25,12 +25,7 @@ Placify
 │   ├── internship.js
 │   └── article.js
 ├── public
-│   ├── css
-│   │   └── styles.css
-│   ├── js
-│   │   └── scripts.js
 │   └── uploads
-│       ├── posters
 │       └── pdfs
 ├── routes
 │   ├── auth.js
